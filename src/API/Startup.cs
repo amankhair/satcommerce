@@ -43,8 +43,6 @@ namespace API
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
             app.UseCors("CorsPolicy");
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -53,6 +51,7 @@ namespace API
             });
 
             app.UseRouting();
+            app.UseStaticFiles();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
