@@ -17,12 +17,7 @@ namespace Sat.Infrastructure.Data
             _context = context;
         }
 
-        public async Task<IReadOnlyList<ProductBrand>> GetProductBrandAsync()
-        {
-            return await _context.ProductBrands.ToListAsync();
-        }
-
-        public async Task<Product> GetProductByIdAsync(long id)
+        public async Task<Product> GetProductByIdAsync(long id) 
         {
             return await _context.Products
                 .Include(p => p.ProductType)
@@ -38,7 +33,12 @@ namespace Sat.Infrastructure.Data
                 .ToListAsync();
         }
 
-        public async Task<IReadOnlyList<ProductType>> GetProductTypeAsync()
+        public async Task<List<ProductBrand>> GetProductBrandsAsync()
+        {
+            return await _context.ProductBrands.ToListAsync();
+        }
+
+        public async Task<List<ProductType>> GetProductTypesAsync()
         {
             return await _context.ProductTypes.ToListAsync();
         }

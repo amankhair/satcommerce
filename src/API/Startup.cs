@@ -1,4 +1,6 @@
 using API.Extensions;
+using API.Helpers;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -22,9 +24,9 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureCors();
+            services.ConfigureRepositoryManager();
             services.ConfigureSqlContext(_configuration);
-
-            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddAutoMapper(typeof(MappingProfiles));
 
             services.AddControllers();
         }

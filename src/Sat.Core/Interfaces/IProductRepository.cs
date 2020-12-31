@@ -8,7 +8,7 @@ namespace Sat.Core.Interfaces
     {
         Task<Product> GetProductByIdAsync(long id);
         Task<IReadOnlyList<Product>> GetProductsAsync();
-        Task<IReadOnlyList<ProductBrand>> GetProductBrandAsync();
-        Task<IReadOnlyList<ProductType>> GetProductTypeAsync();
+        Task<List<ProductBrand>> GetProductBrandsAsync();
+        Task<List<ProductType>> GetProductTypesAsync();
     }
 }

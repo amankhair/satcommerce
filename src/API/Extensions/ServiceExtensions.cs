@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Sat.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Sat.Core.Interfaces;
 
 namespace API.Extensions
 {
@@ -20,5 +21,8 @@ namespace API.Extensions
             IConfiguration configuration) => 
                 services.AddDbContext<StoreContext>(opts => 
                     opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
 }
