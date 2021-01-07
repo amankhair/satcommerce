@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Core", "src\Libraries\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Infrastructure", "src\Libraries\Sat.Infrastructure\Sat.Infrastructure.csproj", "{34EF2286-763A-4D2D-B1B3-6A4A472BFA2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sat.Server", "src\Sat.Server\Sat.Server.csproj", "{1EC4417C-A7BB-409C-9A6F-3964968BAC01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Server", "src\Sat.Server\Sat.Server.csproj", "{1EC4417C-A7BB-409C-9A6F-3964968BAC01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sat.Client", "src\Sat.Client\Sat.Client.csproj", "{A46D5477-DC32-447A-B6C4-1845E6A03D45}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Client", "src\Sat.Client\Sat.Client.csproj", "{A46D5477-DC32-447A-B6C4-1845E6A03D45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

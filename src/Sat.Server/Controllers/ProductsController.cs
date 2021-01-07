@@ -6,6 +6,7 @@ using Sat.Core.Entities;
 using Sat.Core.Interfaces;
 using Sat.Core.Specifications;
 using Sat.Server.Errors;
+using Sat.Server.Helpers;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,12 +36,17 @@ namespace Sat.Server.Controllers
         #region Products List
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<ProductToReturnDto>>> GetProducts()
+        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
+            [FromQuery]ProductSpecParams productParams)
         {
-            var specification = new ProductsWithTypesAndBrandsSpecification();
-            var products = await _repositoryManager.Products.ListAsync(specification);
+            var specification = new ProductsWithTypesAndBrandsSpecification(productParams);
+            var countSpecification = new ProductWithFiltersForCountSpecification(productParams);
 
-            return Ok(_mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products));
+            var totalItems = await _repositoryManager.Products.CountAsync(specification);
+            var products = await _repositoryManager.Products.ListAsync(specification);
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+
+            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, productParams.PageSize, totalItems, data));
         }
 
         #endregion

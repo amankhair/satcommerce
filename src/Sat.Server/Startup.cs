@@ -63,7 +63,7 @@ namespace Sat.Server
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseMiddleware<ExceptionMiddleware>();
-            //app.UseWebAssemblyDebugging(); // ?
+            app.UseWebAssemblyDebugging(); // ?
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();

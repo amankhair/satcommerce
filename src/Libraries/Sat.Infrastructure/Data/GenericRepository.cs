@@ -31,6 +31,9 @@ namespace Sat.Infrastructure.Data
         public async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> specification) =>
             await ApplySpecification(specification).ToListAsync();
 
+        public async Task<int> CountAsync(ISpecification<T> specification) =>
+            await ApplySpecification(specification).CountAsync();
+
         private IQueryable<T> ApplySpecification(ISpecification<T> specification) =>
             SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), specification);
     }
