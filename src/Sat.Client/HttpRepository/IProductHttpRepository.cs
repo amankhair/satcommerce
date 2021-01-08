@@ -1,12 +1,12 @@
-﻿using Sat.Core.DTOs;
-using Sat.Core.Entities;
-using System.Collections.Generic;
+﻿using Sat.Client.Features;
+using Sat.Core.DTOs;
+using Sat.Core.RequestFeatures;
 using System.Threading.Tasks;
 
 namespace Sat.Client.HttpRepository
 {
     public interface IProductHttpRepository
     {
-        Task<IReadOnlyList<ProductToReturnDto>> GetProducts();
+        Task<PagingResponse<ProductToReturnDto>> GetProducts(ProductParameters productParameters);
     }
 }

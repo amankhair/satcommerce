@@ -14,9 +14,9 @@ namespace Sat.Server.Extensions
             {
                 options.AddPolicy("CorsPolicy", builder =>
                     builder.AllowAnyOrigin()
-                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
                             .AllowAnyMethod()
-                            .AllowAnyHeader());
+                            .WithExposedHeaders("X-Pagination"));
             });
 
             services.AddDbContext<StoreContext>(options =>

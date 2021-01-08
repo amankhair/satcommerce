@@ -1,6 +1,11 @@
-﻿using Sat.Core.DTOs;
+﻿using Microsoft.AspNetCore.WebUtilities;
+using Sat.Client.Features;
+using Sat.Core.DTOs;
 using Sat.Core.Entities;
+using Sat.Core.RequestFeatures;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -25,13 +30,28 @@ namespace Sat.Client.HttpRepository
         #endregion
 
 
-        public async Task<IReadOnlyList<ProductToReturnDto>> GetProducts()
+        public async Task<PagingResponse<ProductToReturnDto>> GetProducts(ProductParameters productParameters)
         {
-            var response = await _client.GetAsync("products");
+            var queryStringParam = new Dictionary<string, string>
+            {
+                ["pageNumber"] = productParameters.PageNumber.ToString()
+            };
+
+            var response = await _client.GetAsync(QueryHelpers.AddQueryString("products", queryStringParam));
             var content = await response.Content.ReadAsStringAsync();
 
-            var products = JsonSerializer.Deserialize<IReadOnlyList<ProductToReturnDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            return products;
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new ApplicationException(content);
+            }
+
+            var pagingResponse = new PagingResponse<ProductToReturnDto>
+            {
+                Items = JsonSerializer.Deserialize<IReadOnlyList<ProductToReturnDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }),
+                MetaData = JsonSerializer.Deserialize<MetaData>(response.Headers.GetValues("X-Pagination").First(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+            };
+
+            return pagingResponse;
         }
     }
 }

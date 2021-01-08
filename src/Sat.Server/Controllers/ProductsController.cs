@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Sat.Core.DTOs;
 using Sat.Core.Entities;
 using Sat.Core.Interfaces;
+using Sat.Core.RequestFeatures;
 using Sat.Core.Specifications;
 using Sat.Server.Errors;
-using Sat.Server.Helpers;
+using Sat.Server.Paging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -36,17 +38,19 @@ namespace Sat.Server.Controllers
         #region Products List
 
         [HttpGet]
-        public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
-            [FromQuery]ProductSpecParams productParams)
+        public async Task<ActionResult<PagedList<ProductToReturnDto>>> GetProducts(
+            [FromQuery]ProductParameters productParams)
         {
             var specification = new ProductsWithTypesAndBrandsSpecification(productParams);
             var countSpecification = new ProductWithFiltersForCountSpecification(productParams);
+            var totalItems = await _repositoryManager.Products.CountAsync(countSpecification);
+            var productsFromDb = await _repositoryManager.Products.ListAsync(specification);
+            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(productsFromDb);
+            var productsWithParams = new PagedList<ProductToReturnDto>(productParams.PageNumber, productParams.PageSize, totalItems, data);
 
-            var totalItems = await _repositoryManager.Products.CountAsync(specification);
-            var products = await _repositoryManager.Products.ListAsync(specification);
-            var data = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(productsWithParams.MetaData));
 
-            return Ok(new Pagination<ProductToReturnDto>(productParams.PageIndex, productParams.PageSize, totalItems, data));
+            return Ok(productsWithParams.Items);
         }
 
         #endregion

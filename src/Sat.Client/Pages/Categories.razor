@@ -1,0 +1,219 @@
+﻿@page "/shop/c/categories"
+
+@using Sat.Client.Components
+
+
+<!-- Page content-->
+<div class="cs-sidebar-enabled">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar-->
+            <div class="cs-sidebar col-lg-3 pt-lg-5">
+                <div class="cs-offcanvas-collapse" id="shop-sidebar">
+                    <div class="cs-offcanvas-cap navbar-box-shadow px-4 mb-3">
+                        <h5 class="mt-1 mb-0">Refine your selection</h5>
+                        <button class="close lead" type="button" data-toggle="offcanvas" data-offcanvas-id="shop-sidebar"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="cs-offcanvas-body px-4 pt-3 pt-lg-0 pl-lg-0 pr-lg-2 pr-xl-4" data-simplebar>
+                        <!-- Categories-->
+                        <div class="cs-widget cs-widget-categories mb-5">
+                            <h3 class="cs-widget-title">Categories</h3>
+                            <ul id="categories">
+                                <li>
+                                    <a class="cs-widget-link" href="#clothing" data-toggle="collapse">Clothing<small class="text-muted pl-1 ml-2">235</small></a>
+                                    <ul class="collapse show" id="clothing" data-parent="#categories">
+                                        <li><a class="cs-widget-link" href="#">View all</a></li>
+                                        <li><a class="cs-widget-link" href="#">Blazers &amp; Suits</a></li>
+                                        <li><a class="cs-widget-link" href="#">Cardigans</a></li>
+                                        <li><a class="cs-widget-link" href="#">Dresses</a></li>
+                                        <li><a class="cs-widget-link" href="#">Hoodie &amp; Sweatshirts</a></li>
+                                        <li><a class="cs-widget-link" href="#">Jackets &amp; Coats</a></li>
+                                        <li><a class="cs-widget-link" href="#">Jeans</a></li>
+                                        <li><a class="cs-widget-link" href="#">Lingerie</a></li>
+                                        <li><a class="cs-widget-link" href="#">Sportswear</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="cs-widget-link collapsed" href="#shoes" data-toggle="collapse">Shoes<small class="text-muted pl-1 ml-2">210</small></a>
+                                    <ul class="collapse" id="shoes" data-parent="#categories">
+                                        <li><a class="cs-widget-link" href="#">View all</a></li>
+                                        <li><a class="cs-widget-link" href="#">Athletic shoes</a></li>
+                                        <li><a class="cs-widget-link" href="#">Balerinas &amp; Flats</a></li>
+                                        <li><a class="cs-widget-link" href="#">Boots</a></li>
+                                        <li><a class="cs-widget-link" href="#">Clogs &amp; Mules</a></li>
+                                        <li><a class="cs-widget-link" href="#">Flip Flops</a></li>
+                                        <li><a class="cs-widget-link" href="#">Loafers</a></li>
+                                        <li><a class="cs-widget-link" href="#">Sandals</a></li>
+                                        <li><a class="cs-widget-link" href="#">Sneakers</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="cs-widget-link collapsed" href="#electronics" data-toggle="collapse">Electronics<small class="text-muted pl-1 ml-2">197</small></a>
+                                    <ul class="collapse" id="electronics" data-parent="#categories">
+                                        <li><a class="cs-widget-link" href="#">View all</a></li>
+                                        <li><a class="cs-widget-link" href="#">Computers &amp; Accessories</a></li>
+                                        <li><a class="cs-widget-link" href="#">TV, Video &amp; Audio</a></li>
+                                        <li><a class="cs-widget-link" href="#">Smartphones &amp; Tablets</a></li>
+                                        <li><a class="cs-widget-link" href="#">Cameras, Photo &amp; Video</a></li>
+                                        <li><a class="cs-widget-link" href="#">Headphones</a></li>
+                                        <li><a class="cs-widget-link" href="#">Wearable Electronics</a></li>
+                                        <li><a class="cs-widget-link" href="#">Printers &amp; Ink</a></li>
+                                        <li><a class="cs-widget-link" href="#">Video Games</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a class="cs-widget-link collapsed" href="#accessories" data-toggle="collapse">Accessories<small class="text-muted pl-1 ml-2">124</small></a>
+                                    <ul class="collapse" id="accessories" data-parent="#categories">
+                                        <li><a class="cs-widget-link" href="#">View all</a></li>
+                                        <li><a class="cs-widget-link" href="#">Bags</a></li>
+                                        <li><a class="cs-widget-link" href="#">Belts</a></li>
+                                        <li><a class="cs-widget-link" href="#">Hats</a></li>
+                                        <li><a class="cs-widget-link" href="#">Jewelry</a></li>
+                                        <li><a class="cs-widget-link" href="#">Cosmetics</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Price range-->
+                        <div class="cs-widget mt-n1 mb-5">
+                            <h3 class="cs-widget-title">Price</h3>
+                            <div class="px-2">
+                                <div class="cs-range-slider" data-start-min="250" data-start-max="680" data-min="0" data-max="1000" data-step="1">
+                                    <div class="cs-range-slider-ui"></div>
+                                    <div class="d-flex">
+                                        <div class="w-50 pr-2 mr-2">
+                                            <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input class="form-control cs-range-slider-value-min" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="w-50 pl-2">
+                                            <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                                                <input class="form-control cs-range-slider-value-max" type="text">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Brand (checkboxes)-->
+                        <div class="cs-widget mb-5">
+                            <h3 class="cs-widget-title">Brand</h3>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="adidas" checked>
+                                <label class="custom-control-label text-nav" for="adidas">Adidas<span class="font-size-xs text-muted ml-2">425</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="bilabong">
+                                <label class="custom-control-label text-nav" for="bilabong">Bilabong<span class="font-size-xs text-muted ml-2">27</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="klein">
+                                <label class="custom-control-label text-nav" for="klein">Calvin Klein<span class="font-size-xs text-muted ml-2">365</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="electrolux">
+                                <label class="custom-control-label text-nav" for="electrolux">Electrolux<span class="font-size-xs text-muted ml-2">56</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="motorolla">
+                                <label class="custom-control-label text-nav" for="motorolla">Motorolla<span class="font-size-xs text-muted ml-2">104</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="nb">
+                                <label class="custom-control-label text-nav" for="nb">New Balance<span class="font-size-xs text-muted ml-2">197</span></label>
+                            </div>
+                        </div>
+                        <!-- Size (checkboxes)-->
+                        <div class="cs-widget mb-5">
+                            <h3 class="cs-widget-title">Size</h3>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="xs">
+                                <label class="custom-control-label text-nav" for="xs">XS<span class="font-size-xs text-muted ml-2">38</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="s" checked>
+                                <label class="custom-control-label text-nav" for="s">S<span class="font-size-xs text-muted ml-2">173</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="m">
+                                <label class="custom-control-label text-nav" for="m">M<span class="font-size-xs text-muted ml-2">226</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="l">
+                                <label class="custom-control-label text-nav" for="l">L<span class="font-size-xs text-muted ml-2">345</span></label>
+                            </div>
+                            <div class="custom-control custom-checkbox mb-2">
+                                <input class="custom-control-input" type="checkbox" id="xl">
+                                <label class="custom-control-label text-nav" for="xl">XL<span class="font-size-xs text-muted ml-2">104</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 cs-content py-4 mb-2 mb-sm-0 pb-sm-5">
+                <nav aria-label="breadcrumb">
+                    <ol class="py-1 my-2 breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="#">Shop grid</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">Left sidebar</li>
+                    </ol>
+                </nav>
+                <!-- Active filters-->
+                <div class="d-flex flex-wrap align-items-center mb-2">
+                    <label class="mr-3 mt-1 mb-2">Your selection:</label><a class="active-filter mr-2 my-2" href="#">Clothing</a><a class="active-filter mr-2 my-2" href="#">Shirts &amp; Tops</a><a class="active-filter mr-2 my-2" href="#">Brand name</a><a class="active-filter my-2" href="#">Size</a>
+                </div>
+                <!-- Sorting + Pager-->
+                <div class="d-flex justify-content-between align-items-center py-3 mb-3">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <select class="form-control custom-select mr-2" style="width: 15.25rem;">
+                            <option value="popularity">Sort by popularity</option>
+                            <option value="rating">Sort by average rating</option>
+                            <option value="newness">Sort by newness</option>
+                            <option value="price: low to high">Sort by price: low to high</option>
+                            <option value="price: high to low">Sort by price: high to low</option>
+                        </select>
+                        <div class="d-none d-sm-block font-size-sm text-nowrap pl-1 mb-1">of 135 products</div>
+                    </div>
+                    <div class="d-none d-lg-flex justify-content-center align-items-center">
+                        <label class="pr-1 mr-2">Show</label>
+                        <select class="form-control custom-select mr-2" style="width: 5rem;">
+                            <option value="12">12</option>
+                            <option value="24">24</option>
+                            <option value="36">36</option>
+                            <option value="48">48</option>
+                            <option value="60">60</option>
+                        </select>
+                        <div class="font-size-sm text-nowrap pl-1 mb-1">products per page</div>
+                    </div>
+                </div>
+                <!-- Shop grid-->
+                <div class="row">
+                    @if (Products != null)
+                    {
+                        @foreach (var item in Products)
+                        {
+                            <!-- Item-->
+                            <div class="col-md-4 col-sm-6 mb-grid-gutter">
+                                <ProductCardComponent Product="@item" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <h1>No products</h1>
+                    }
+                </div>
+                <!-- Pagination-->
+                <div class="d-md-flex justify-content-center align-items-center pt-3 pb-2">
+
+                    <Pagination MetaData="MetaData" Spread="2" SelectedPage="SelectedPage" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
