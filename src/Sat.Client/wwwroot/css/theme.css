@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*
  * Around | Multipurpose Bootstrap Template
  * Copyright 2020 Createx Studio
@@ -13712,14 +13712,14 @@ label:not(.form-check-label):not(.custom-control-label):not(.custom-file-label):
 
 .input-group-overlay .prepended-form-control:not(.rounded-left-0) {
   padding-left: 2.5rem;
-  border-top-left-radius: 0.75rem !important;
-  border-bottom-left-radius: 0.75rem !important;
+  border-top-left-radius: 0rem !important;
+  border-bottom-left-radius: 0rem !important;
 }
 
 .input-group-overlay .appended-form-control:not(.rounded-right-0) {
   padding-right: 2.5rem;
-  border-top-right-radius: 0.75rem !important;
-  border-bottom-right-radius: 0.75rem !important;
+  border-top-right-radius: 0rem !important;
+  border-bottom-right-radius: 0rem !important;
 }
 
 .input-group-append-overlay,

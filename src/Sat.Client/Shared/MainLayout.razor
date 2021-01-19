@@ -1,7 +1,13 @@
 ﻿@inherits LayoutComponentBase
+@using Sat.Client.Components
+
 
 <main class="cs-page-wrapper">
     <NavMenu />
+
+    <SearchComponent OnSearchChanged="@SearchChanged" />
+
+    <NavCatalogMenu/>
 
     @Body
 

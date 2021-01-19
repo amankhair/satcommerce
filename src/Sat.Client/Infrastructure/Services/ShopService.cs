@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.WebUtilities;
 using Sat.Client.Features;
 using Sat.Core.DTOs;
-using Sat.Core.Entities;
 using Sat.Core.RequestFeatures;
 using System;
 using System.Collections.Generic;
@@ -10,22 +9,30 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Sat.Client.HttpRepository
+namespace Sat.Client.Infrastructure.Services
 {
-    public class ProductHttpRepository : IProductHttpRepository
+    public class ShopService
     {
         #region Fields
 
         private readonly HttpClient _client;
 
-        #endregion
+        #endregion Fields
+
+        #region Consts
+
+        private const string ProductPath = "products";
+
+        #endregion Consts
 
         #region Ctor
 
-        public ProductHttpRepository(HttpClient client) => _client = client;
+        public ShopService(HttpClient client)
+        {
+            _client = client;
+        }
 
-        #endregion
-
+        #endregion Ctor
 
         public async Task<PagingResponse<ProductToReturnDto>> GetProducts(ProductParameters productParameters)
         {
@@ -43,7 +50,7 @@ namespace Sat.Client.HttpRepository
                 throw new ApplicationException(content);
             }
 
-            var pagingResponse = new PagingResponse<ProductToReturnDto> 
+            var pagingResponse = new PagingResponse<ProductToReturnDto>
             {
                 Items = JsonSerializer.Deserialize<IReadOnlyList<ProductToReturnDto>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }),
                 MetaData = JsonSerializer.Deserialize<MetaData>(response.Headers.GetValues("X-Pagination").First(), new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
@@ -51,5 +58,6 @@ namespace Sat.Client.HttpRepository
 
             return pagingResponse;
         }
+
     }
 }

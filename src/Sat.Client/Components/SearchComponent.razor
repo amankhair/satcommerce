@@ -1,0 +1,21 @@
+﻿<!-- Searchbar -->
+<section>
+    <div class="containr">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-7 py-md-4 text-center">
+                <div class="input-group input-group-overlay flex-nowrap">
+                    <div class="input-group-prepend-overlay">
+                        <span class="input-group-text text-muted">
+                            <i class="fe-search"></i>
+                        </span>
+                    </div>
+                    <input class="form-control prepended-form-control" type="search" placeholder="Search Product by name" @bind-value="@SearchTerm" />
+                    <div class="input-group-append">
+                        <button class="btn btn-info" style="border-radius: 0;" @onclick="@OnClick">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Searchbar -->

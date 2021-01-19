@@ -2,8 +2,8 @@
 {
     public class ProductParameters : RequestParameters
     {
-        public int? BrandId { get; set; }
-        public int? TypeId { get; set; }
+        public long? BrandId { get; set; }
+        public long? TypeId { get; set; }
         public string Sort { get; set; }
     }
 }
