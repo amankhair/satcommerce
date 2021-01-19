@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Routing;
 using Sat.Client.Extensions;
 using Sat.Client.Infrastructure.Services.Products;
 using Sat.Core.DTOs;
+using Sat.Core.Entities;
 using Sat.Core.RequestFeatures;
 using System;
 using System.Collections.Generic;
@@ -22,14 +23,20 @@ namespace Sat.Client.Pages.Shop
         #region Props
 
         public IReadOnlyList<ProductToReturnDto> Products { get; set; } = new List<ProductToReturnDto>();
+        public IReadOnlyList<ProductBrand> ProductBrands { get; set; } = new List<ProductBrand>();
+        public IReadOnlyList<ProductType> ProductTypes { get; set; } = new List<ProductType>();
         public MetaData MetaData { get; set; } = new MetaData();
         private ProductParameters _productParameters { get; set; } = new ProductParameters();
 
         #endregion Props
+        
 
+        public string SelectedProductType { get; set; }
 
         protected async override Task OnInitializedAsync()
         {
+            await GetProductBrands();
+            await GetProductTypes();
             await GetQueryStringValues();
             navManager.LocationChanged += HandleLocationChanged;
         }
@@ -42,15 +49,38 @@ namespace Sat.Client.Pages.Shop
             MetaData = response.MetaData;
         }
 
-        private async Task GetBrands()
+        // get product brands
+        private async Task GetProductBrands()
         {
-
+            ProductBrands = await productService.GetProductBrands();
         }
+
+        // get product types
+        private async Task GetProductTypes()
+        {
+            ProductTypes = await productService.GetProductTypes();
+        }
+
+        public string SelectedBrand { get; set; }
+
+        public string GetBClass(string item) =>
+            SelectedBrand == item ? "active" : "";
+
+        public string GetTClass(string item) =>
+            SelectedProductType == item ? "active" : "";
 
         // pagination
         private async Task SelectedPage(int page)
         {
             _productParameters.PageNumber = page;
+            await GetProducts();
+        }
+
+        private async Task OnTypeSelected(long typeId, string typeName)
+        {
+            SelectedProductType = typeName;
+            _productParameters.TypeId = typeId;
+            _productParameters.PageNumber = 1;
             await GetProducts();
         }
 

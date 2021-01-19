@@ -20,18 +20,22 @@
                             <h3 class="cs-widget-title">Categories</h3>
                             <ul id="categories">
                                 <li>
-                                    <a class="cs-widget-link" href="#clothing" data-toggle="collapse">Clothing<small class="text-muted pl-1 ml-2">235</small></a>
-                                    <ul class="collapse show" id="clothing" data-parent="#categories">
-                                        <li><a class="cs-widget-link" href="#">View all</a></li>
-                                        <li><a class="cs-widget-link" href="#">Blazers &amp; Suits</a></li>
-                                        <li><a class="cs-widget-link" href="#">Cardigans</a></li>
-                                        <li><a class="cs-widget-link" href="#">Dresses</a></li>
-                                        <li><a class="cs-widget-link" href="#">Hoodie &amp; Sweatshirts</a></li>
-                                        <li><a class="cs-widget-link" href="#">Jackets &amp; Coats</a></li>
-                                        <li><a class="cs-widget-link" href="#">Jeans</a></li>
-                                        <li><a class="cs-widget-link" href="#">Lingerie</a></li>
-                                        <li><a class="cs-widget-link" href="#">Sportswear</a></li>
-                                    </ul>
+                                    @if (ProductTypes != null)
+                                    {
+                                        <a class="cs-widget-link" href="#clothing" data-toggle="collapse">Types<small class="text-muted pl-1 ml-2">235</small></a>
+                                        <ul class="collapse show" id="clothing" data-parent="#categories">
+                                            @foreach (var productType in ProductTypes)
+                                            {
+                                                <li>
+                                                    <a class="cs-widget-link @GetTClass(productType.Name)"
+                                                       style="cursor: pointer;"
+                                                       @onclick="@(() => OnTypeSelected(productType.Id, productType.Name))">
+                                                        @productType.Name
+                                                    </a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    }
                                 </li>
                                 <li>
                                     <a class="cs-widget-link collapsed" href="#shoes" data-toggle="collapse">Shoes<small class="text-muted pl-1 ml-2">210</small></a>

@@ -23,6 +23,8 @@ namespace Sat.Client.Infrastructure.Services.Products
         #region Consts
 
         private const string ProductsPath = "products";
+        private const string Brands = "brands";
+        private const string Types = "types";
 
         #endregion Consts
 
@@ -80,6 +82,26 @@ namespace Sat.Client.Infrastructure.Services.Products
             return productResponse;
         }
 
-        
+        // get product types
+        public async Task<IReadOnlyList<ProductType>> GetProductTypes()
+        {
+            var response = await _httpClient.GetAsync($"{ProductsPath}/{Types}");
+            var content = await response.Content.ReadAsStringAsync();
+
+            var productTypes = JsonSerializer.Deserialize<IReadOnlyList<ProductType>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return productTypes;
+        }
+
+        // get product brands
+        public async Task<IReadOnlyList<ProductBrand>> GetProductBrands()
+        {
+            var response = await _httpClient.GetAsync($"{ProductsPath}/{Brands}");
+            var content = await response.Content.ReadAsStringAsync();
+
+            var productBrands = JsonSerializer.Deserialize<IReadOnlyList<ProductBrand>>(content, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+
+            return productBrands;
+        }
     }
 }
