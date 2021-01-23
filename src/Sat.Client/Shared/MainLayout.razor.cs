@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.WebUtilities;
-using Sat.Client.Extensions;
+using Sat.Client.Infrastructure.Interceptors;
 using System;
 using System.Collections.Generic;
 
@@ -25,5 +25,6 @@ namespace Sat.Client.Shared
                 NavigationManager.NavigateTo(QueryHelpers.AddQueryString("shop/c/categories", queryParams));
             }
         }
+
     }
 }

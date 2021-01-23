@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System.Threading;
 
 namespace Sat.Client.Components
 {

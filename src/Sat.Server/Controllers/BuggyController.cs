@@ -33,7 +33,8 @@ namespace Sat.Server.Controllers
 
             var thingToReturn = thing.ToString();
 
-            return Ok();
+            //return Ok();
+            return StatusCode(500, "Something went wrong.");
         }
 
         [HttpGet("badrequest")]

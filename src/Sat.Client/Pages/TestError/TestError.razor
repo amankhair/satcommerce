@@ -1,0 +1,10 @@
+﻿@page "/testerror"
+ 
+<div class="container mt-5">
+    <div class="row">
+        <button @onclick="@Get500Error" class="btn btn-outline-primary mr-3">Test 500 Error</button>
+        <button @onclick="@Get404Error" class="btn btn-outline-primary mr-3">Test 404 Error</button>
+        <button @onclick="@Get400Error" class="btn btn-outline-primary mr-3">Test 400 Error</button>
+        <button @onclick="@Get400ValidationError" class="btn btn-outline-primary mr-3">Test Valid Error</button>
+    </div>
+</div>

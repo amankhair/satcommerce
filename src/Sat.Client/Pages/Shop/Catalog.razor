@@ -1,7 +1,5 @@
 ﻿@page "/shop/c/categories"
-
-@using Sat.Client.Components
-
+@page "/shop/c/{SelectedTypeParameter}"
 
 <!-- Page content-->
 <div class="cs-sidebar-enabled">
@@ -202,7 +200,7 @@
                         {
                             <!-- Item-->
                             <div class="col-md-4 col-sm-6 mb-grid-gutter">
-                                <ProductCardComponent Product="@item" />
+                                <ProductCardComponent Product="@item"/>
                             </div>
                         }
                     }

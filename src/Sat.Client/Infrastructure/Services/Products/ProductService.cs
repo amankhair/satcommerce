@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.WebUtilities;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.WebUtilities;
 using Sat.Client.Features;
 using Sat.Core.DTOs;
 using Sat.Core.Entities;
@@ -6,6 +7,7 @@ using Sat.Core.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -17,6 +19,7 @@ namespace Sat.Client.Infrastructure.Services.Products
         #region Fields
 
         private readonly HttpClient _httpClient;
+        private readonly NavigationManager _navManager;
 
         #endregion Fields
 
@@ -30,7 +33,11 @@ namespace Sat.Client.Infrastructure.Services.Products
 
         #region Ctor
 
-        public ProductService(HttpClient httpClient) => _httpClient = httpClient;
+        public ProductService(HttpClient httpClient, NavigationManager navManager)
+        {
+            _httpClient = httpClient;
+            _navManager = navManager;
+        }
 
         #endregion Ctor
 
@@ -56,11 +63,6 @@ namespace Sat.Client.Infrastructure.Services.Products
 
             var response = await _httpClient.GetAsync(QueryHelpers.AddQueryString(ProductsPath, queryStringParam));
             var content = await response.Content.ReadAsStringAsync();
-
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new ApplicationException(content);
-            }
 
             var pagingResponse = new PagingResponse<ProductToReturnDto>
             {

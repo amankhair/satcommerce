@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Routing;
 using Sat.Client.Extensions;
+using Sat.Client.Infrastructure.Interceptors;
 using Sat.Client.Infrastructure.Services.Products;
 using Sat.Core.DTOs;
 using Sat.Core.Entities;
@@ -16,9 +17,12 @@ namespace Sat.Client.Pages.Shop
         #region Injects
 
         [Inject] public IProductService productService { get; set; }
+        [Inject] public HttpInterceptorService Interceptor { get; set; }
         [Inject] public NavigationManager navManager { get; set; }
 
         #endregion Injects
+
+        [Parameter] public string SelectedTypeParameter { get; set; }
 
         #region Props
 
@@ -35,6 +39,7 @@ namespace Sat.Client.Pages.Shop
 
         protected async override Task OnInitializedAsync()
         {
+            Interceptor.RegisterEvent();
             await GetProductBrands();
             await GetProductTypes();
             await GetQueryStringValues();
@@ -78,6 +83,8 @@ namespace Sat.Client.Pages.Shop
 
         private async Task OnTypeSelected(long typeId, string typeName)
         {
+            SelectedTypeParameter = typeName.ToLower();
+            navManager.NavigateTo($"shop/c/{SelectedTypeParameter}");
             SelectedProductType = typeName;
             _productParameters.TypeId = typeId;
             _productParameters.PageNumber = 1;
@@ -101,6 +108,7 @@ namespace Sat.Client.Pages.Shop
         public void Dispose()
         {
             navManager.LocationChanged -= HandleLocationChanged;
+            Interceptor.DisposeEvent();
         }
 
         #endregion QueryStrings Methods
