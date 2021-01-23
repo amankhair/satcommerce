@@ -1,18 +1,24 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Sat.Client.Infrastructure.Interceptors;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Sat.Client.Pages.TestError
 {
-    public partial class TestError
+    public partial class TestError : IDisposable
     {
         [Inject] public HttpClient _httpClient { get; set; }
+        [Inject] public HttpInterceptorService Interceptor { get; set; }
+
+        protected override void OnInitialized()
+        {
+            Interceptor.RegisterEvent();
+        }
 
         private Task Get500Error()
         {
             var response = _httpClient.GetAsync("buggy/servererror");
-
             Console.WriteLine(response);
 
             return response;
@@ -34,18 +40,15 @@ namespace Sat.Client.Pages.TestError
             return response;
         }
 
-        private void Get400ValidationError()
+        private Task Get400ValidationError()
         {
-            try
-            {
-                var response = _httpClient.GetAsync("products/fortytwo");
-                Console.WriteLine(response);
-            }
-            catch (Exception e)
-            {
-                string validerror = e.Message;
-                Console.WriteLine(validerror);
-            }
+            var response = _httpClient.GetAsync("products/fortytwo");
+            return response;
+        }
+
+        public void Dispose()
+        {
+            Interceptor.DisposeEvent();
         }
     }
 }

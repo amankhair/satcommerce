@@ -1,0 +1,20 @@
+﻿<nav aria-label="breadcrumb">
+    <ol class="py-1 my-2 breadcrumb">
+        @if (BreadCrumbDatas != null)
+        {
+
+            @foreach (var item in BreadCrumbDatas)
+            {
+                @if (item == BreadCrumbDatas.Last())
+                {
+                    <li class="breadcrumb-item active" aria-current="page">@item.Text</li>
+
+                }
+                else
+                {
+                    <li class="breadcrumb-item"><a href="@item.Url">@item.Text</a></li>
+                }
+            }
+        }
+    </ol>
+</nav>
